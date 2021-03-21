@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe RetentionPlans do
-  it "has a version number" do
+  it 'has a version number' do
     expect(RetentionPlans::VERSION).not_to be nil
   end
 
@@ -20,7 +20,7 @@ RSpec.describe RetentionPlans do
           date = '20210320113021'
           expect(described_class.retaine?(date: date, plan: plan)).to be_truthy
         end
-      end 
+      end
 
       context 'when retaine false' do
         let(:current_date) { DateTime.parse('20210321113021') }
@@ -36,7 +36,7 @@ RSpec.describe RetentionPlans do
       let(:plan) { 'gold' }
 
       context 'when retaine true' do
-        let(:current_date) do 
+        let(:current_date) do
           DateTime.parse('20210321113021')
                   .next_day(42)
                   .next_month(12)
@@ -47,10 +47,10 @@ RSpec.describe RetentionPlans do
 
           expect(described_class.retaine?(date: date, plan: plan)).to be_truthy
         end
-      end 
+      end
 
       context 'when retaine false' do
-        let(:current_date) do 
+        let(:current_date) do
           DateTime.parse('20210321113021')
                   .next_day(42)
                   .next_month(12)
@@ -71,7 +71,7 @@ RSpec.describe RetentionPlans do
       let(:plan) { 'platinum' }
 
       context 'when retaine true' do
-        let(:current_date) do 
+        let(:current_date) do
           DateTime.parse('20210321113021')
                   .next_day(42)
                   .next_month(12)
@@ -83,10 +83,10 @@ RSpec.describe RetentionPlans do
 
           expect(described_class.retaine?(date: date, plan: plan)).to be_truthy
         end
-      end 
+      end
 
       context 'when retaine false' do
-        let(:current_date) do 
+        let(:current_date) do
           DateTime.parse('20210321113021')
                   .next_day(42)
                   .next_month(12)

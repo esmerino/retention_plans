@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "retention_plans/version"
+require_relative 'retention_plans/version'
 require 'date'
 
 module RetentionPlans
@@ -14,11 +14,11 @@ module RetentionPlans
     private
 
     def rule_plan(date, plan)
-     return standard_rule(date) if plan == 'standard'
-     return gold_rule(date) if plan == 'gold'
-     return platinum_rule(date) if plan == 'platinum'
+      return standard_rule(date) if plan == 'standard'
+      return gold_rule(date) if plan == 'gold'
+      return platinum_rule(date) if plan == 'platinum'
 
-     raise Error
+      raise Error
     end
 
     def standard_rule(date)
@@ -33,7 +33,7 @@ module RetentionPlans
 
     def platinum_rule(date)
       date = DateTime.parse(date)
-      DateTime.now >  date.next_day(42).next_month(12).next_year(7)
+      DateTime.now > date.next_day(42).next_month(12).next_year(7)
     end
   end
 end

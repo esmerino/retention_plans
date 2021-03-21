@@ -1,4 +1,4 @@
-s# frozen_string_literal: true
+# frozen_string_literal: true
 
 require_relative "lib/retention_plans/version"
 
@@ -20,5 +20,5 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  s.add_development_dependency 'rspec',  '>= 3.0.0'
+  spec.add_development_dependency 'rspec',  '>= 3.0.0'
 end

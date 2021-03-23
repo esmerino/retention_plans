@@ -18,7 +18,12 @@ RSpec.describe RetentionPlans do
 
         it do
           date = '20210320113021'
-          expect(described_class.retaine?(date: date, plan: plan)).to be_truthy
+
+          expect(described_class.retaine?(date: date, plan: plan)).to eq({ 
+            each_snapshot: true, 
+            last_snapshot_month: false, 
+            last_snapshot_year: false
+          })
         end
       end
 
@@ -27,7 +32,12 @@ RSpec.describe RetentionPlans do
 
         it do
           date = '20210322113021'
-          expect(described_class.retaine?(date: date, plan: plan)).to be_falsy
+
+          expect(described_class.retaine?(date: date, plan: plan)).to eq({ 
+            each_snapshot: false, 
+            last_snapshot_month: false, 
+            last_snapshot_year: false
+          })
         end
       end
     end
@@ -44,8 +54,11 @@ RSpec.describe RetentionPlans do
 
         it do
           date = DateTime.parse('20210320113021').strftime('%Y%m%d%H%M%S')
-
-          expect(described_class.retaine?(date: date, plan: plan)).to be_truthy
+          expect(described_class.retaine?(date: date, plan: plan)).to eq({ 
+            each_snapshot: true, 
+            last_snapshot_month: true, 
+            last_snapshot_year: false
+          })
         end
       end
 
@@ -61,8 +74,12 @@ RSpec.describe RetentionPlans do
                          .next_day(43)
                          .next_month(13)
                          .strftime('%Y%m%d%H%M%S')
-
-          expect(described_class.retaine?(date: date, plan: plan)).to be_falsy
+          
+          expect(described_class.retaine?(date: date, plan: plan)).to eq({ 
+            each_snapshot: false, 
+            last_snapshot_month: false, 
+            last_snapshot_year: false
+          })
         end
       end
     end
@@ -80,8 +97,12 @@ RSpec.describe RetentionPlans do
 
         it do
           date = DateTime.parse('20210320113021').strftime('%Y%m%d%H%M%S')
-
-          expect(described_class.retaine?(date: date, plan: plan)).to be_truthy
+          
+          expect(described_class.retaine?(date: date, plan: plan)).to eq({
+            each_snapshot: true, 
+            last_snapshot_month: true, 
+            last_snapshot_year: true
+          })
         end
       end
 
@@ -100,7 +121,11 @@ RSpec.describe RetentionPlans do
                          .next_year(6)
                          .strftime('%Y%m%d%H%M%S')
 
-          expect(described_class.retaine?(date: date, plan: plan)).to be_falsy
+          expect(described_class.retaine?(date: date, plan: plan)).to eq({
+            each_snapshot: true, 
+            last_snapshot_month: true,
+            last_snapshot_year: false
+          })
         end
       end
     end
